@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+6#!/usr/bin/env python3
 """
 Demo script showing all student features are working correctly.
 This demonstrates that ALL required features are implemented and accessible.

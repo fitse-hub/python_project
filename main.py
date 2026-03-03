@@ -106,8 +106,11 @@ def admin_menu(username):
 # ---------------------------------------------------------------------------
 
 def student_menu(username):
+    # Get student's actual name for display
+    student_name = models.students.get(username, {}).get("name", username)
+    
     while True:
-        print_header(f"STUDENT MENU  ({username})")
+        print_header(f"STUDENT MENU  ({student_name})")
         print("  1. Register for Course")
         print("  2. Drop Course")
         print("  3. View My Courses")
@@ -171,7 +174,14 @@ def login_screen():
 
         role, msg = authenticate(username, password)
         if role:
-            print(f"\n  ✔ {msg} Welcome, {username}! (Role: {role})")
+            # Get the actual name for display
+            display_name = username
+            if role == "student" and username in models.students:
+                display_name = models.students[username]["name"]
+            elif role == "admin":
+                display_name = "Admin"
+            
+            print(f"\n  ✔ {msg} Welcome, {display_name}! (Role: {role})")
             return username, role
         else:
             print(f"\n  ✘ {msg}")
