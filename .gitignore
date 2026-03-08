@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 *.pyo
 data.json
+students.json
+courses.json
+admins.json
